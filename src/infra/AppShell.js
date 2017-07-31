@@ -1,8 +1,10 @@
 import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
+import createHistory from 'history/createBrowserHistory';
 import App from '../ui/app';
 import store from './store';
 
+const history = createHistory()
 
 class AppShell extends React.Component {
 
@@ -10,7 +12,7 @@ class AppShell extends React.Component {
 
         return (
             <ReduxProvider store={store} >
-                <App />
+                <App history={history} />
             </ReduxProvider>
         );
 
