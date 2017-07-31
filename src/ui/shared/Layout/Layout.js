@@ -1,7 +1,6 @@
 import React from 'react';
 import Sidebar from './Sidebar'
 
-
 class Layout extends React.Component {
 
     render() {
