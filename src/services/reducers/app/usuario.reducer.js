@@ -1,8 +1,4 @@
-import { 
-    APP_USUARIO__LOAD_ALL_FETCHING,
-    APP_USUARIO__LOAD_ALL_FETCH_SUCCESS,
-    APP_USUARIO__LOAD_ALL_FETCH_FAIL
-} from '../../contants/usuarios.contants'
+import APP from '../../contants/usuarios.contants'
 
 const INITAL_STATE = {
     items: [],
@@ -15,13 +11,13 @@ export default function usuario(state = INITAL_STATE, action) {
 
     switch (type) {
 
-        case APP_USUARIO__LOAD_ALL_FETCHING:
+        case APP.USUARIO.LOAD_ALL_FETCHING:
             return { ...state, loading: true, error: null };
 
-        case APP_USUARIO__LOAD_ALL_FETCH_SUCCESS:
+        case APP.USUARIO.LOAD_ALL_FETCH_SUCCESS:
             return { ...state, items, loading: false }
 
-        case APP_USUARIO__LOAD_ALL_FETCH_FAIL:
+        case APP.USUARIO.LOAD_ALL_FETCH_FAIL:
             return { ...state, error, loading: false }
 
         default:

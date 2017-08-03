@@ -1,8 +1,4 @@
-import { 
-    APP_USUARIO__LOAD_ALL_FETCHING,
-    APP_USUARIO__LOAD_ALL_FETCH_SUCCESS,
-    APP_USUARIO__LOAD_ALL_FETCH_FAIL
-} from '../../contants/usuarios.contants'
+import APP from '../../contants/usuarios.contants'
 
 import usuario from './usuario.reducer'
 
@@ -17,7 +13,7 @@ describe('usuarios reducer', () => {
 
     expect(
       usuario({ items: [], page: 1 }, {
-        type: APP_USUARIO__LOAD_ALL_FETCHING
+        type: APP.USUARIO.LOAD_ALL_FETCHING
       })
     ).toEqual({
       items: [],
@@ -28,7 +24,7 @@ describe('usuarios reducer', () => {
 
     expect(
       usuario({ items: [], page: 1, loading: true }, {
-        type: APP_USUARIO__LOAD_ALL_FETCH_FAIL,
+        type: APP.USUARIO.LOAD_ALL_FETCH_FAIL,
         error: '404'
       })
     ).toEqual({
@@ -40,7 +36,7 @@ describe('usuarios reducer', () => {
 
     expect(
       usuario({ items: [1, 2, 3], page: 1, loading: true }, {
-        type: APP_USUARIO__LOAD_ALL_FETCH_FAIL,
+        type: APP.USUARIO.LOAD_ALL_FETCH_FAIL,
         error: '404'
       })
     ).toEqual({
@@ -52,7 +48,7 @@ describe('usuarios reducer', () => {
 
     expect(
       usuario({ items: [], page: 1, loading: true }, {
-        type: APP_USUARIO__LOAD_ALL_FETCH_SUCCESS,
+        type: APP.USUARIO.LOAD_ALL_FETCH_SUCCESS,
         items: [1, 2, 3, 4]
       })
     ).toEqual({
