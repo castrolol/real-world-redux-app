@@ -1,7 +1,8 @@
 import React from 'react';
-import { Table, Dimmer, Loader } from 'semantic-ui-react';
-import UsuarioTableHeader from './components/UsuarioTableHeader'
-import UsuarioTableRow from './components/UsuarioTableRow'
+import { Table, Segment, Dimmer, Loader } from 'semantic-ui-react';
+import UsuarioTableHeader from './components/UsuarioTableHeader';
+import UsuarioTableRow from './components/UsuarioTableRow';
+import PageChooser from '../../../shared/PageChooser';
 
 
 class UsuariosPage extends React.Component {
@@ -13,7 +14,7 @@ class UsuariosPage extends React.Component {
 
     render() {
 
-        const { usuarios, loading } = this.props;
+        const { usuarios, page, pageCount, loading } = this.props;
 
         return (
             <div>
@@ -26,6 +27,13 @@ class UsuariosPage extends React.Component {
                             <UsuarioTableRow key={usuario.id} model={usuario} />
                         )}
                     </Table.Body>
+                    <Table.Footer>
+                        <Table.Row>
+                            <Table.HeaderCell colSpan='5'>
+                                <PageChooser right onSelected={page => this.props.changePage(page)} pageCount={pageCount} current={page} />
+                            </Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Footer>
                 </Table>
                 <Dimmer active={loading}>
                     <Loader>Buscando usuários</Loader>

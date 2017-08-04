@@ -11,25 +11,36 @@ class Http {
         return fetch(`${baseUrl}${url}`, options);
     }
 
-    jsonResponse(response) {
+    jsonResponse(request) {
         //TODO: tratar 400 e 500 aqui tbm...
-        return response.json();
+        var headers = {};
+
+        return request
+            .then(response => {
+                headers = response.headers;
+                return response.json();
+            })
+            .then(json => ({
+                json,
+                headers
+            }));
+
     }
 
-    getJson(url) {
-        return this.request(url, "GET").then(r => this.jsonResponse(r));
+    getJson(url, getHeaders = null) {
+        return this.jsonResponse(this.request(url, "GET"));
     }
 
-    postJson(url, body) {
-        return this.request(url, "POST", body).then(r => this.jsonResponse(r));
+    postJson(url, body, getHeaders = null) {
+        return this.jsonResponse(this.request(url, "POST", body));
     }
 
-    putJson(url, body) {
-        return this.request(url, "PUT", body).then(r => this.jsonResponse(r));
+    putJson(url, body, getHeaders = null) {
+        return this.jsonResponse(this.request(url, "PUT", body));
     }
 
-    deleteJson(url, body) {
-        return this.request(url, "DELETE", body).then(r => this.jsonResponse(r));
+    deleteJson(url, body, getHeaders = null) {
+        return this.jsonResponse(this.request(url, "DELETE", body));
     }
 
 }

@@ -2,19 +2,22 @@ import APP from '../contants/usuarios.contants'
 
 import usuarioApi from '../api/usuario.api';
 
-export function loadUsuarios() {
+export function loadUsuarios(page = 1) {
     return function (dispatch, getState) {
 
         dispatch({
             type: APP.USUARIO.LOAD_ALL_FETCHING,
+            page,
         });
 
         usuarioApi
-            .getAll()
-            .then(usuarios => {
+            .getAll(page)
+            .then(({ items, page, pageCount }) => {
                 dispatch({
                     type: APP.USUARIO.LOAD_ALL_FETCH_SUCCESS,
-                    items: usuarios
+                    items,
+                    page,
+                    pageCount
                 });
             })
             .catch(err => {

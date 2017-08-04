@@ -7,18 +7,18 @@ const INITAL_STATE = {
 
 export default function usuario(state = INITAL_STATE, action) {
 
-    const { type, items, error } = action;
+    const { type, items, page, pageCount, error } = action;
 
     switch (type) {
 
         case APP.USUARIO.LOAD_ALL_FETCHING:
-            return { ...state, loading: true, error: null };
+            return { ...state, loading: true, page, error: null };
 
         case APP.USUARIO.LOAD_ALL_FETCH_SUCCESS:
-            return { ...state, items, loading: false }
+            return { ...state, items, page, pageCount, loading: false }
 
         case APP.USUARIO.LOAD_ALL_FETCH_FAIL:
-            return { ...state, error, loading: false }
+            return { ...state, error, loading: false, page: 0, pageCount: 0 }
 
         default:
             return state;
